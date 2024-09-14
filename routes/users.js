@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 import User from "../models/user.js";
 
-//Get all user
+//Get all users
 router.get("/", async (req, res) => {
 	try {
 		const users = await User.find();
@@ -50,9 +50,16 @@ router.put("/:id", async (req, res) => {
 //Delete one user
 router.delete("/:id", async (req, res) => {
 	try {
-		res.status(200).send("testDelete");
+		const result = await User.deleteOne({ user_id: req.params.id });
+		if (result.deletedCount === 0) {
+			// If no document was deleted
+			return res
+				.status(404)
+				.send(`No user found with ID: ${req.params.id}`);
+		}
+		res.status(200).send(`Deleted ${req.params.id} from database`);
 	} catch (error) {
-		console.log(error);
+		res.status(400).json({ message: error.message });
 	}
 });
 
