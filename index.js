@@ -22,4 +22,5 @@ app.use("/users", usersRouter);
 
 app.listen(PORT, () => {
 	console.log(`Listening on port: ${PORT}`);
+	connectDb();
 });
