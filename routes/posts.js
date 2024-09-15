@@ -1,26 +1,26 @@
 import express from "express";
 const router = express.Router();
-import User from "../models/user.js";
+import Post from "../models/post.js";
 
 //middleware to check if user exists
-async function getUser(req, res, next) {
+async function getPost(req, res, next) {
 	try {
-		const results = await User.findById(req.params.id);
+		const results = await Post.findById(req.params.id);
 		if (!results) {
-			return res.status(404).json({ error: "User not found" });
+			return res.status(404).json({ error: "Post not found" });
 		}
-		req.user = results; //user data stored in req for next middleware
+		req.post = results; //post data stored in req for next middleware
 		next();
 	} catch (error) {
 		return res.status(500).json({ message: error.message });
 	}
 }
 
-//Get all users
+//Get all posts
 router.get("/", async (req, res) => {
 	try {
-		const users = await User.find();
-		res.status(200).json(users);
+		const posts = await Post.find();
+		res.status(200).json(posts);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
@@ -29,14 +29,14 @@ router.get("/", async (req, res) => {
 
 //Get one user
 //  use  middleware to check for user
-router.get("/:id", getUser, async (req, res) => {
+router.get("/:id", getPost, async (req, res) => {
 	try {
 		// const results = await User.findById(req.params.id);
 		// if (!results) {
 		// 	return res.status(404).json({ error: "User not found" });
 		// }
 		// res.status(200).json(results);
-		res.status(200).json(req.user);
+		res.status(200).json(req.post);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
@@ -46,14 +46,11 @@ router.get("/:id", getUser, async (req, res) => {
 //Create one user
 router.post("/", async (req, res) => {
 	try {
-		const user = await User.create({
-			name: req.body.name,
-			// user_id: req.body.user_id,
-			email: req.body.email,
-			password: req.body.password,
+		const post = await Post.create({
+			// post info
 		});
-		console.log(user);
-		res.status(201).json(user);
+		console.log(post);
+		res.status(201).json(post);
 	} catch (error) {
 		console.log(error);
 		res.status(400).json({ message: error.message });
@@ -61,14 +58,14 @@ router.post("/", async (req, res) => {
 });
 
 //Update one user
-router.patch("/:id", getUser, async (req, res) => {
+router.patch("/:id", getPost, async (req, res) => {
 	try {
-		const userUpdated = await User.findByIdAndUpdate(
-			req.params.id, //user id from params
+		const postUpdated = await Post.findByIdAndUpdate(
+			req.params.id, // id from params
 			req.body, // JSON data to update from the request body
-			{ new: true, runValidators: true  } // Option: return updated document
+			{ new: true, runValidators: true } // Option: return updated document
 		);
-		res.status(200).json(userUpdated);
+		res.status(200).json(postUpdated);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
@@ -76,9 +73,9 @@ router.patch("/:id", getUser, async (req, res) => {
 });
 
 //Delete one user
-router.delete("/:id", getUser, async (req, res) => {
+router.delete("/:id", getPost, async (req, res) => {
 	try {
-		await User.findByIdAndDelete(req.params.id); // Delete the user by ID
+		await Post.findByIdAndDelete(req.params.id); // Delete the user by ID
 		res.status(200).send(`Deleted ${req.params.id} from database`);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
