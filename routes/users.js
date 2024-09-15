@@ -61,11 +61,17 @@ router.post("/", async (req, res) => {
 });
 
 //Update one user
-router.put("/:id", getUser, async (req, res) => {
+router.patch("/:id", getUser, async (req, res) => {
 	try {
-		res.status(200).send("testUpdate");
+		const userUpdated = await User.findByIdAndUpdate(
+			req.params.id, //user id from params
+			req.body, // JSON data to update from the request body
+			{ new: true } // Option: return updated document
+		);
+		res.status(200).json(userUpdated);
 	} catch (error) {
 		console.log(error);
+		res.status(500).json({ message: error.message });
 	}
 });
 
