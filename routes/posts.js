@@ -45,8 +45,8 @@ router.post("/", async (req, res) => {
 			// post info
 			name: req.body.name,
 			email: req.body.email,
-			movie_id: req.body.movie,
-			text: Lorem,
+			movie_id: req.body.movie_id,
+			text: req.body.text,
 		});
 		console.log(post);
 		res.status(201).json(post);
