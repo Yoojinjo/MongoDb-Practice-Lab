@@ -27,15 +27,10 @@ router.get("/", async (req, res) => {
 	}
 });
 
-//Get one user
-//  use  middleware to check for user
+//Get one post
+//  use  middleware to check for post
 router.get("/:id", getPost, async (req, res) => {
 	try {
-		// const results = await User.findById(req.params.id);
-		// if (!results) {
-		// 	return res.status(404).json({ error: "User not found" });
-		// }
-		// res.status(200).json(results);
 		res.status(200).json(req.post);
 	} catch (error) {
 		console.log(error);
@@ -43,11 +38,15 @@ router.get("/:id", getPost, async (req, res) => {
 	}
 });
 
-//Create one user
+//Create one post
 router.post("/", async (req, res) => {
 	try {
 		const post = await Post.create({
 			// post info
+			name: req.body.name,
+			email: req.body.email,
+			movie_id: req.body.movie,
+			text: Lorem,
 		});
 		console.log(post);
 		res.status(201).json(post);
@@ -57,7 +56,7 @@ router.post("/", async (req, res) => {
 	}
 });
 
-//Update one user
+//Update one post
 router.patch("/:id", getPost, async (req, res) => {
 	try {
 		const postUpdated = await Post.findByIdAndUpdate(
@@ -72,7 +71,7 @@ router.patch("/:id", getPost, async (req, res) => {
 	}
 });
 
-//Delete one user
+//Delete one post
 router.delete("/:id", getPost, async (req, res) => {
 	try {
 		await Post.findByIdAndDelete(req.params.id); // Delete the user by ID
