@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import Movie from "../models/movie.js";
+import Movie from "../models/movies.js";
 
 //middleware to check if user exists
 async function getMovie(req, res, next) {
@@ -49,40 +49,39 @@ router.post("/", async (req, res) => {
 			cast: req.body.cast,
 			poster: req.body.poster,
 			title: req.body.title,
-
 			fullplot: req.body.fullplot,
 			languages: req.body.languages,
 			released: req.body.released,
 			directors: req.body.directors,
 			rated: req.body.rated,
 			awards: {
-				wins: req.body.awards.wins,
-				nominations: req.body.awards.nominations,
-				text: req.body.awards.text,
+				wins: req.body.awards?.wins, // optional chaining '?' ensures don't try to access properties of undefined objects
+				nominations: req.body.awards?.nominations,
+				text: req.body.awards?.text,
 			},
 			lastupdated: req.body.lastupdated,
 			year: req.body.year,
 			imdb: {
-				rating: req.body.imdb.rating,
-				votes: req.body.imdb.votes,
-				id: req.body.imdb.id,
+				rating: req.body.imdb?.rating,
+				votes: req.body.imdb?.votes,
+				id: req.body.imdb?.id,
 			},
 			countries: req.body.countries,
 			type: req.body.type,
 			tomatoes: {
 				viewer: {
-					rating: req.body.tomatoes.viewer.rating,
-					numReviews: req.body.tomatoes.viewer.numReviews,
-					meter: req.body.tomatoes.viewer.meter,
+					rating: req.body.tomatoes?.viewer?.rating,
+					numReviews: req.body.tomatoes?.viewer?.numReviews,
+					meter: req.body.tomatoes?.viewer?.meter,
 				},
-				fresh: req.body.tomatoes.fresh,
+				fresh: req.body.tomatoes?.fresh,
 				critic: {
-					rating: req.body.tomatoes.critic.rating,
-					numReviews: req.body.tomatoes.critic.numReviews,
-					meter: req.body.tomatoes.critic.meter,
+					rating: req.body.tomatoes?.critic?.rating,
+					numReviews: req.body.tomatoes?.critic?.numReviews,
+					meter: req.body.tomatoes?.critic?.meter,
 				},
-				rotten: req.body.tomatoes.rotten,
-				lastupdated: req.body.tomatoes.lastupdated,
+				rotten: req.body.tomatoes?.rotten,
+				lastupdated: req.body.tomatoes?.lastupdated,
 			},
 			num_mflix_comments: req.body.num_mflix_comments,
 		});

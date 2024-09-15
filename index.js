@@ -11,10 +11,12 @@ app.use(express.json());
 //import routers
 import usersRouter from "./routes/users.js";
 import postsRouter from "./routes/posts.js";
+import moviesRouter from "./routes/movies.js";
 
 // use routers
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
+app.use("/movies", moviesRouter);
 
 // root route :)
 app.get("/", async (req, res) => {
