@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
 //Get one user
 router.get("/:id", async (req, res) => {
 	try {
-		const results = await User.find({ user_id: req.params.id });
+		const results = await User.find({ _id: req.params.id });
 		res.status(200).json(results);
 	} catch (error) {
 		console.log(error);
@@ -28,8 +28,9 @@ router.post("/", async (req, res) => {
 	try {
 		const user = await User.create({
 			name: req.body.name,
-			user_id: req.body.user_id,
+			// user_id: req.body.user_id,
 			email: req.body.email,
+			password: req.body.password,
 		});
 		res.status(201).json(user);
 	} catch (error) {
@@ -50,7 +51,7 @@ router.put("/:id", async (req, res) => {
 //Delete one user
 router.delete("/:id", async (req, res) => {
 	try {
-		const result = await User.deleteOne({ user_id: req.params.id });
+		const result = await User.deleteOne({ _id: req.params.id });
 		if (result.deletedCount === 0) {
 			// If no document was deleted
 			return res
