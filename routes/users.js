@@ -2,6 +2,20 @@ import express from "express";
 const router = express.Router();
 import User from "../models/user.js";
 
+//middleware to check if user exists
+async function getUser(req, res, next) {
+	try {
+		const results = await User.findById(req.params.id);
+		if (!results) {
+			return res.status(404).json({ error: "User not found" });
+		}
+		req.user = results; //user data stored in req for next middleware
+		next();
+	} catch (error) {
+		return res.status(500).json({ message: error.message });
+	}
+}
+
 //Get all users
 router.get("/", async (req, res) => {
 	try {
@@ -14,13 +28,15 @@ router.get("/", async (req, res) => {
 });
 
 //Get one user
-router.get("/:id", async (req, res) => {
+//  use  middleware to check for user
+router.get("/:id", getUser, async (req, res) => {
 	try {
-		const results = await User.findById(req.params.id);
-		if (!results) {
-			return res.status(404).json({ error: "User not found" });
-		}
-		res.status(200).json(results);
+		// const results = await User.findById(req.params.id);
+		// if (!results) {
+		// 	return res.status(404).json({ error: "User not found" });
+		// }
+		// res.status(200).json(results);
+		res.status(200).json(req.user);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
@@ -36,6 +52,7 @@ router.post("/", async (req, res) => {
 			email: req.body.email,
 			password: req.body.password,
 		});
+		console.log(user);
 		res.status(201).json(user);
 	} catch (error) {
 		console.log(error);
@@ -44,7 +61,7 @@ router.post("/", async (req, res) => {
 });
 
 //Update one user
-router.put("/:id", async (req, res) => {
+router.put("/:id", getUser, async (req, res) => {
 	try {
 		res.status(200).send("testUpdate");
 	} catch (error) {
@@ -53,18 +70,12 @@ router.put("/:id", async (req, res) => {
 });
 
 //Delete one user
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", getUser, async (req, res) => {
 	try {
-		const result = await User.deleteOne({ _id: req.params.id });
-		if (result.deletedCount === 0) {
-			// If no document was deleted
-			return res
-				.status(404)
-				.send(`No user found with ID: ${req.params.id}`);
-		}
+		await User.findByIdAndDelete(req.params.id); // Delete the user by ID
 		res.status(200).send(`Deleted ${req.params.id} from database`);
 	} catch (error) {
-		res.status(400).json({ message: error.message });
+		res.status(500).json({ message: error.message });
 	}
 });
 
