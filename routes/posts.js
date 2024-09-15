@@ -74,8 +74,8 @@ router.patch("/:id", getPost, async (req, res) => {
 //Delete one post
 router.delete("/:id", getPost, async (req, res) => {
 	try {
-		await Post.findByIdAndDelete(req.params.id); // Delete the user by ID
-		res.status(200).send(`Deleted ${req.params.id} from database`);
+		await Post.findByIdAndDelete(req.params.id); // Delete the post by ID
+		res.status(200).send(`Deleted post with ${req.params.id} from database`);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

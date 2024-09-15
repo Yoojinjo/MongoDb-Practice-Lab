@@ -66,7 +66,7 @@ router.patch("/:id", getUser, async (req, res) => {
 		const userUpdated = await User.findByIdAndUpdate(
 			req.params.id, //user id from params
 			req.body, // JSON data to update from the request body
-			{ new: true, runValidators: true  } // Option: return updated document
+			{ new: true, runValidators: true } // Option: return updated document
 		);
 		res.status(200).json(userUpdated);
 	} catch (error) {
@@ -79,7 +79,9 @@ router.patch("/:id", getUser, async (req, res) => {
 router.delete("/:id", getUser, async (req, res) => {
 	try {
 		await User.findByIdAndDelete(req.params.id); // Delete the user by ID
-		res.status(200).send(`Deleted ${req.params.id} from database`);
+		res.status(200).send(
+			`Deleted user with ${req.params.id} from database`
+		);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
