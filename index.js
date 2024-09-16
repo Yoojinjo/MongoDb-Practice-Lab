@@ -5,6 +5,13 @@ import connectDb from "./db.js";
 const app = express();
 const PORT = 3000;
 
+//view engine eks
+app.set("view engine", "ejs");
+//set view engine
+app.set("views", "./views");
+//CSS
+app.use(express.static("public"));
+
 //middleware
 app.use(express.json());
 
@@ -22,8 +29,9 @@ app.use("/movies", moviesRouter);
 app.get("/", async (req, res) => {
 	try {
 		console.log("Hello");
-		const results = "Welcome to SBA MongoDB/Mongoose";
-		await res.send(results);
+		const message = "Welcome to SBA MongoDB/Mongoose";
+		res.render("index", { message }); //render EJS view for root route
+		// await res.send(message);
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
