@@ -8,7 +8,7 @@ ul {
 	background-color: #333;
 }
 
-li {
+nav li {
 	float: left;
 }
 
@@ -25,4 +25,8 @@ li a:hover {
 }
 li a.active {
 	background-color: #4caf50; /* Green color for the active link */
+}
+#user-data {
+	margin: 5px;
+	padding: 2px;
 }
