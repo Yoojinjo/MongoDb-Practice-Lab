@@ -113,7 +113,7 @@ router.delete("/:id", getMovie, async (req, res) => {
 	try {
 		await Movie.findByIdAndDelete(req.params.id); // Delete the movie by ID
 		res.status(200).send(
-			`Deleted movie with ${req.params.id} from database`
+			`Deleted movie with id: ${req.params.id} from database`
 		);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
