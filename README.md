@@ -1,30 +1,17 @@
 # SBA-MongoDb
 
 API to connect to movie info and post database
+MongoDB sample_mflix database
+users, posts and movies collections
 
 three different data collections within the database ( users, posts, or comments).
-Utilize reasonable data modeling practices.
 
-Create GET routes for all data that should be exposed to the client, using appropriate query commands to retrieve the data from the database.
+indexes for required fields. for example movie.title or post.name but NOT post.email for performance, or users.password
 
-Create POST routes for data, as appropriate, using appropriate insertion commands to add data to the database. At least one data collection should allow for client creation via a POST request.
+Mongoose data type validation thru schemas
+(Email regex in schema)
 
-Create PATCH or PUT routes for data, as appropriate, using appropriate update commands to change data in the database. At least one data collection should allow for client manipulation via a PATCH or PUT request.
-
-Create DELETE routes for data, as appropriate, using appropriate delete commands to remove data from the database. At least one data collection should allow for client deletion via a DELETE request.
-
-Include sensible indexes for any and all fields that are queried frequently. For fields that may have a high write-to-read ratio, you may forgo indexes for performance considerations. Make comments of this where applicable.
-
-Include sensible MongoDB data validation rules for at least one data collection. (Email regex in schema)
-Use Mongoose to implement your application.
-
-Utilize reasonable code organization practices.
-
-Ensure that the program runs without errors (comment out things that do not work, and explain your blockers - you can still receive partial credit).
-
-Commit frequently to the git repository.
-
-Include a README file that contains a description of your application.
+Utilize reasonable code organization practices. Separate routes for users, posts and movies.
 
 Available routes.
 ROOT

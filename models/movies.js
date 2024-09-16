@@ -9,6 +9,7 @@ const moviesSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true,
+        index: true,
 	},
 	fullplot: String,
 	languages: [String],
@@ -21,7 +22,10 @@ const moviesSchema = new mongoose.Schema({
 		text: String,
 	},
 	lastupdated: Date,
-	year: Number,
+	year: {
+        type: Number,
+        required: true,
+        index: true,
 	imdb: {
 		rating: Number,
 		votes: Number,

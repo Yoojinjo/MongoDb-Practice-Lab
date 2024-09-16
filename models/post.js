@@ -4,6 +4,7 @@ const postSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
+		index: true,
 	},
 	email: {
 		type: String,
@@ -15,7 +16,11 @@ const postSchema = new mongoose.Schema({
 			message: (props) => `${props.value} is not a valid email address!`,
 		},
 	},
-	movie_id: String,
+	movie_id: {
+		type: String,
+		required: true,
+		index: true,
+	},
 	text: String,
 	date: {
 		type: Date,
