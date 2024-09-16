@@ -6,13 +6,14 @@
 		<title>SBA Home</title>
 		<!-- <link rel="stylesheet" href="../public/index.css" /> -->
 		<link rel="stylesheet" href="/index.css" />
-		<!-- because express.static("public") -->
+		<!-- path is because express.static("public") -->
 	</head>
 	<body>
 		<h1><%= message %></h1>
 
 		<nav>
 			<ul>
+				<li><a class="active" href="#home">Home</a></li>
 				<li><a href="/users"> Current Users</a></li>
 				<li><a href="/posts"> Current Posts</a></li>
 				<li><a href="/movies"> Current Movies</a></li>

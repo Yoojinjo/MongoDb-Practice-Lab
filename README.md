@@ -44,3 +44,7 @@ Endpoint: /users/:id /posts:id /movies:id
 Method: PATCH findByIdandDelete
 Description: Delete an existing user's information based on the provided user ID.
 Body (optional):
+
+added ejs view engine, with nav bar on home page for practice
+
+would like to add views to other routes
