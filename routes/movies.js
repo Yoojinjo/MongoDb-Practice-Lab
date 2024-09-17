@@ -20,7 +20,7 @@ async function getMovie(req, res, next) {
 router.get("/", async (req, res) => {
 	try {
 		const movies = await Movie.find();
-		res.status(200).json(movies);
+		res.status(200).render("movies", { movies }); //render EJS view
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
