@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 	try {
 		const users = await User.find();
 		// res.status(200).json(users);
-		res.status(200).render("users", { users }); //render EJS view for root route
+		res.status(200).render("users", { users }); //render EJS view
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });

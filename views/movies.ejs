@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SBA Users</title>
+		<!-- <link rel="stylesheet" href="../public/index.css" /> -->
+		<link rel="stylesheet" href="/index.css" />
+		<!-- path is because express.static("public") -->
+	</head>
+	<body>
+		<h1>Current Comments Posted</h1>
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/users"> Current Users</a></li>
+				<li><a class="active" href="/posts"> Current Posts</a></li>
+				<li><a href="/movies"> Current Movies</a></li>
+			</ul>
+		</nav>
+		<!-- Dynamically render the list of posts -->
+		<ol>
+			<% if (movies.length > 0) { %> <% movies.forEach(movie => { %>
+			<li class="movie-data">
+				<h3><%= movie.text %></h3>
+				<p><strong>movie:</strong> <%= post.movie_id%></p>
+				<p><strong>User: </strong> <%= post.name%></p>
+				<p><strong>date:</strong> <%= post.date%></p>
+				<!-- <p><strong>id:</strong> <%= post._id%></p> -->
+			</li>
+
+			<% }) } else { %>
+			<li>No comments have been posted</li>
+			<% } %>
+		</ol>
+	</body>
+</html>

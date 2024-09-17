@@ -7,8 +7,10 @@ const PORT = 3000;
 
 //view engine eks
 app.set("view engine", "ejs");
+
 //set view engine
 app.set("views", "./views");
+
 //CSS
 app.use(express.static("public"));
 
