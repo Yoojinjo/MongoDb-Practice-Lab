@@ -19,11 +19,15 @@
 				<li><a class="active" href="/movies"> Movie Database</a></li>
 			</ul>
 		</nav>
-		<!-- Dynamically render the list of posts -->
+		<!-- Dynamically render the list of movies -->
 		<ol>
 			<% if (movies.length > 0) { %> <% movies.forEach(movie => { %>
 			<li class="movie-data">
-				<h4><%= movie.title %> (<%= movie.year%> )</h4>
+				<h4>
+					<a href="/movies/<%= movie._id %>"
+						><%= movie.title %> (<%= movie.year %>)</a
+					>
+				</h4>
 			</li>
 
 			<% }) } else { %>

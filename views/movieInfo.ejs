@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>SBA Users</title>
+		<!-- <link rel="stylesheet" href="../public/index.css" /> -->
+		<link rel="stylesheet" href="/index.css" />
+		<!-- path is because express.static("public") -->
+	</head>
+	<body>
+		<h1>Movie Database</h1>
+
+		<nav>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/users"> Current Users</a></li>
+				<li><a href="/posts"> Current Posts</a></li>
+				<li><a class="active" href="/movies"> Movie Database</a></li>
+			</ul>
+		</nav>
+		<!-- Display more detailed movie data if available -->
+		<% if (movies.length > 0) { %>
+		<h3><%= movie.title %> (<%= movie.year%> )</h3>
+		<p><strong>Plot:</strong> <%= movie.plot%></p>
+		<p><strong>Genres:</strong> <%= movie.genres.join(", ")%></p>
+		<p><strong>Cast:</strong> <%= movie.cast.join(", ")%></p>
+		<p><strong>Directors:</strong> <%= movie.directors.join(", ")%></p>
+		<p><strong>Rated:</strong> <%= movie.rated%></p>
+		<p><strong>Awards:</strong> <%= movie.awards.text%></p>
+		<p>
+			<strong>Imdb:</strong> <%= movie.imdb.rating%>, Votes: <%=
+			movie.imdb.votes %>
+		</p>
+		<p>
+			<strong>Rotten Tomatoes View Rating:</strong> <%=
+			movie.tomatoes.viewer.rating%>
+		</p>
+
+		<% } else { %>
+		<p>No movie info available</p>
+		<% } %>
+	</body>
+</html>

@@ -12,7 +12,7 @@ nav li {
 	float: left;
 }
 
-li a {
+nav li a {
 	display: block;
 	color: white;
 	text-align: center;
@@ -20,13 +20,15 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover {
+nav li a:hover {
 	background-color: #111;
 }
-li a.active {
+nav li a.active {
 	background-color: #4caf50; /* Green color for the active link */
 }
 #user-data {
 	margin: 5px;
 	padding: 2px;
+}
+#movie-data {
 }
