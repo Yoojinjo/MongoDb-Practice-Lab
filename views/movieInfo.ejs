@@ -9,7 +9,7 @@
 		<!-- path is because express.static("public") -->
 	</head>
 	<body>
-		<h1>Movie Database</h1>
+		<h1>Movie Details</h1>
 
 		<nav>
 			<ul>
@@ -20,7 +20,7 @@
 			</ul>
 		</nav>
 		<!-- Display more detailed movie data if available -->
-		<% if (movies.length > 0) { %>
+		<% if (movie.title) { %>
 		<h3><%= movie.title %> (<%= movie.year%> )</h3>
 		<p><strong>Plot:</strong> <%= movie.plot%></p>
 		<p><strong>Genres:</strong> <%= movie.genres.join(", ")%></p>

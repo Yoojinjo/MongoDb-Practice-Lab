@@ -31,7 +31,8 @@ router.get("/", async (req, res) => {
 //  use  middleware to check for movie
 router.get("/:id", getMovie, async (req, res) => {
 	try {
-		res.status(200).json(req.movie);
+		// res.status(200).json(req.movie); JSON data
+		res.status(200).render("movieInfo", { movie: req.movie }); //render EJS view
 	} catch (error) {
 		console.log(error);
 		res.status(500).json({ message: error.message });
