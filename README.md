@@ -46,5 +46,6 @@ Description: Delete an existing user's information based on the provided user ID
 Body (optional):
 
 added ejs view engine, with nav bar on home page for practice
+added links -movie list items are links to page with greater detail (findbyID)
 
-would like to add views to other routes
+would like to add UI to add/ delete /edit entries
