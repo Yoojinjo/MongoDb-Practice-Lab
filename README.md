@@ -1,17 +1,21 @@
 # SBA-MongoDb
 
+Description
 API to connect to movie info and post database
 MongoDB sample_mflix database
-users, posts and movies collections
-
 three different data collections within the database ( users, posts, or comments).
 
-indexes for required fields. for example movie.title or post.name but NOT post.email for performance, or users.password
+Goals
+Utilize reasonable code organization practices. Separate routes for users, posts and movies.
+indexing for required fields. eg movie.title or post.name 
+
+Built with
+Node.js / ejs 
+MongoDb / Mongoose
+HTML / CSS
 
 Mongoose data type validation thru schemas
 (Email regex in schema)
-
-Utilize reasonable code organization practices. Separate routes for users, posts and movies.
 
 Available routes.
 ROOT
